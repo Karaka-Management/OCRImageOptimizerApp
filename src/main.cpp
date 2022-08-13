@@ -16,6 +16,7 @@
 #include "../cOMS/Image/Skew.h"
 #include "../cOMS/Image/Thresholding.h"
 #include "../cOMS/Image/BillDetection.h"
+#include "../cOMS/Image/Kernel.h"
 
 const bool DEBUG = false;
 
@@ -45,9 +46,6 @@ void printVersion()
 
 int main(int argc, char **argv)
 {
-    const char *inputIdentifier  = "-i";
-    const char *outputIdentifier = "-o";
-
     bool hasHelpCmd  = Utils::ArrayUtils::has_arg("-h", argv, argc);
     if (hasHelpCmd) {
         printHelp();
@@ -62,8 +60,8 @@ int main(int argc, char **argv)
         return 0;
     }
 
-    char *inputImage  = Utils::ArrayUtils::get_arg(inputIdentifier, argv, argc);
-    char *outputImage = Utils::ArrayUtils::get_arg(outputIdentifier, argv, argc);
+    char *inputImage  = Utils::ArrayUtils::get_arg("-i", argv, argc);
+    char *outputImage = Utils::ArrayUtils::get_arg("-o", argv, argc);
 
     if (inputImage == NULL || outputImage == NULL) {
         printf("Invalid application usage:\n");
@@ -79,6 +77,11 @@ int main(int argc, char **argv)
         return -1;
     }
 
+    bool hasRotateCmd  = Utils::ArrayUtils::has_arg("--rotate", argv, argc);
+    bool hasEdgesCmd   = Utils::ArrayUtils::has_arg("--edges", argv, argc);
+    bool hasBinaryCmd  = Utils::ArrayUtils::has_arg("--binary", argv, argc);
+    bool hasSharpenCmd = Utils::ArrayUtils::has_arg("--sharpen", argv, argc);
+
     cv::Mat in;
     in = cv::imread(argv[1], cv::IMREAD_UNCHANGED);
     if (!in.data) {
@@ -89,14 +92,33 @@ int main(int argc, char **argv)
 
     cv::Mat out = in.clone();
 
-    out = Image::BillDetection::highlightBill(out);
-    if (DEBUG) cv::imshow("bill_detection", out);
+    if (hasEdgesCmd ||
+        (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
+    ) {
+        out = Image::BillDetection::highlightBill(out);
+        if (DEBUG) cv::imshow("bill_detection", out);
+    }
 
-    out = Image::Thresholding::integralThresholding(out);
-    if (DEBUG) cv::imshow("thresholding", out);
+    if (hasBinaryCmd ||
+        (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
+    ) {
+        out = Image::Thresholding::integralThresholding(out);
+        if (DEBUG) cv::imshow("thresholding", out);
+    }
 
-    out = Image::Skew::deskewHoughLines(out);
-    if (DEBUG) cv::imshow("rotation", out);
+    if (hasRotateCmd ||
+        (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
+    ) {
+        out = Image::Skew::deskewHoughLines(out);
+        if (DEBUG) cv::imshow("rotation", out);
+    }
+
+    if (hasSharpenCmd ||
+        (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
+    ) {
+        out = Image::Kernel::convolve(out, Image::KERNEL_SHARPEN);
+        if (DEBUG) cv::imshow("sharpen", out);
+    }
 
     if (DEBUG) cv::imshow("original", in);
 
