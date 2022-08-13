@@ -1,0 +1,7 @@
+*.out
+.directory
+*.cmake
+CMakeCache.txt
+Makefile
+CMakeFiles
+libs
