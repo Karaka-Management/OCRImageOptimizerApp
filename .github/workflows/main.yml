@@ -18,11 +18,6 @@ jobs:
         fetch-depth: 1
         submodules: recursive
         token: ${{ secrets.GH_PAT }}
-    - name: Set up GCC
-      uses: ./
-      with:
-        platform: '${{ matrix.platform }}'
-        cc: 1
     - name: Setup opencv
       uses: Dovyski/setup-opencv-action@v1
       with:
