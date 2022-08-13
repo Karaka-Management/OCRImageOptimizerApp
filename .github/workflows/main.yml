@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         platform: [x86, x64]
-        os: [ubuntu-latest windows]
+        os: [ubuntu-latest, windows]
     runs-on: '${{ matrix.os }}'
     name: 'Test: ${{ matrix.os }} / ${{ matrix.platform }}'
     steps:
