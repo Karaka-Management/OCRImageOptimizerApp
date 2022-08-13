@@ -43,8 +43,7 @@ jobs:
         git config --global user.name 'Build Bot'
         git config --global user.email 'build.bot@karaka.app'
         git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}
-        git add *.css
-        git add *.scss
+        git add build/.
         git status
-        git commit -m "Automatic css build" || true
+        git commit -m "Automatic build" || true
         git push || true
