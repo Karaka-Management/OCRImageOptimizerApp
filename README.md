@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/Karaka-Management/Assets/master/art/logo.png" width="256" alt="Logo"></p>
 
-The cOMS framework and toolset is primarily developed for the Karaka application which is a modular web application for small to mid sized companies that need CRM, ERP, Intranet and/or CMS functionalities and much more. The framework is also used in some other tools and websites which compliment the Karaka web application and provides the necessary C++ functionality.
+The OCRImageOptimizer optimized images for OCR readers for improved text recognition. The application supports automatic image rotation, color binarization (black and white), removing shadows from scans, blurr reduction and cropping of areas which are not part of the scanned/photographed paper.
 
 With Karaka you have one partner who can provide all the tools and software solutions you are used to at fair and reasonable prices even for small organizations and companies/startups. Our solutions can be used independently from each other or fully integrated with other solutions we provide. By choosing Karaka as your partner you'll be able to adjust your software based on the changes in your requirements without worrying about integration and workflow optimization.
 
@@ -18,12 +18,9 @@ With Karaka you have one partner who can provide all the tools and software solu
 
 ## Requirements
 
-* PHP 8.1
-* PHP extension: php8.1-dev php8.1-cli php8.1-common php8.1-mysql php8.1-pgsql php8.1-xdebug php8.1-opcache php8.1-pdo php8.1-sqlite php8.1-mbstring php8.1-curl php8.1-imap php8.1-bcmath php8.1-zip php8.1-dom php8.1-xml php8.1-phar php8.1-gd php-pear
-* apache2 (recommended) or nginx
-* mysql-server (recommended) or postgresql postgresql-contrib
-* Tools: tesseract-ocr, pdftotext, pdftoppm
-* Make sure that URL rewriting is active!
+* C++
+* Libraries: opencv
+* Tools: tesseract-ocr, pdftotext, pdftoppm, CMake
 
 ### Developer tools
 
