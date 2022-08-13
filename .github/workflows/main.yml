@@ -34,7 +34,7 @@ jobs:
         cd ..
     - name: Check for modified files
       id: git-check
-      run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD -- *.{scss,css}; then echo "false"; else echo "true"; fi)
+      run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD -- build/*; then echo "false"; else echo "true"; fi)
     - name: Push changes
       if: steps.git-check.outputs.modified == 'true'
       run: |
