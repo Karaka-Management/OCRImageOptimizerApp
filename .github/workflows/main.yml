@@ -7,8 +7,8 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'NO_CI')"
     strategy:
       matrix:
-        platform: [x86, x64]
-        os: [ubuntu-latest, windows]
+        platform: [x64]
+        os: [ubuntu-latest, windows-latest]
     runs-on: '${{ matrix.os }}'
     name: 'Test: ${{ matrix.os }} / ${{ matrix.platform }}'
     steps:
