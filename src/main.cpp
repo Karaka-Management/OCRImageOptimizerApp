@@ -90,7 +90,8 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    cv::Mat out = in.clone();
+    cv::Mat out;
+    cv::cvtColor(in, out, CV_BGRA2BGR);
 
     if (hasEdgesCmd ||
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
