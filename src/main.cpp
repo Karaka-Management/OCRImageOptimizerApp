@@ -91,7 +91,7 @@ int main(int argc, char **argv)
     }
 
     cv::Mat out;
-    cv::cvtColor(in, out, CV_BGRA2BGR);
+    cv::cvtColor(in, out, CV_BGRA2BGR); // alternatively use CV_BGR2GRAY
 
     if (hasEdgesCmd ||
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
