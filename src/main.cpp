@@ -18,7 +18,7 @@
 #include "../cOMS/Image/BillDetection.h"
 #include "../cOMS/Image/Kernel.h"
 
-const bool DEBUG = false;
+const bool DEBUG = true;
 
 void printHelp()
 {
@@ -71,7 +71,7 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    if (!Utils::FileUtils::file_exists(argv[1])) {
+    if (!Utils::FileUtils::file_exists(inputImage)) {
         printf("Image file doesn't exist.\n");
 
         return -1;
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
     bool hasSharpenCmd = Utils::ArrayUtils::has_arg("--sharpen", argv, argc);
 
     cv::Mat in;
-    in = cv::imread(argv[1], cv::IMREAD_UNCHANGED);
+    in = cv::imread(inputImage, cv::IMREAD_UNCHANGED);
     if (!in.data) {
         printf("Couldn't read image.\n");
 
@@ -122,7 +122,7 @@ int main(int argc, char **argv)
 
     if (DEBUG) cv::imshow("original", in);
 
-    cv::imwrite(argv[2], out);
+    cv::imwrite(outputImage, out);
 
     if (DEBUG) cv::waitKey(0);
 
