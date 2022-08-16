@@ -18,37 +18,22 @@ With Karaka you have one partner who can provide all the tools and software solu
 
 ## Requirements
 
-* C++
-* Libraries: opencv
-* Tools: tesseract-ocr, pdftotext, pdftoppm, CMake
+* tesseract-ocr (or other) for text recognition
+* pdftoppm (or other) for pdf to image export if your scans are pdf
 
 ### Developer tools
 
-* Php extension: xdebug
-* Tools: Composer, Npm
-* Composer tools: phpstan, phpunit, phpcs
-* Npm tools: eslint
+* Language: C++
+* Libraries: opencv
+* Tools: CMake
 
 ## Installation
 
-Detailed installation instructions can be found at:
-
-* [Developer Setup](https://github.com/Karaka-Management/Developer-Guide/blob/develop/general/setup.md)
-* [User Setup](https://github.com/Karaka-Management/User-Guide/blob/develop/setup/install.md)
+Simply download the .exe and you can run the program
 
 ## Philosophy & Demo
 
 We believe software should support a business in it's daily tasks and growth in a very efficient way without frustration. In order to achieve this we constantly take feedback from our customers and expand and improve our software solutions.
-
-You can find a freely available online demo at https://demo.karaka.app (user: admin, pass: orange) without any registration or inquiry.
-
-## Development status
-
-Currently Karaka is still developing the first Alpha version. As soon as we have a running Beta version we are allowing external testers to use our software and a selected amount of inhouse developed modules.
-
-General updates can be found in our info section at https://karaka.app/info and developer updates can be found in our developer section at https://karaka.app/dev. In our developer section you can also check out the automatically generated reports such as code coverage, code style, static analysis etc. as well as our code style guide lines and developer documentation.
-
-* [Project Status](https://github.com/Karaka-Management/Organization-Guide/blob/master/Project/PROJECT.md)
 
 ## Tech stack
 
