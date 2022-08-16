@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/Karaka-Management/Assets/master/art/logo.png" width="256" alt="Logo"></p>
 
-The OCRImageOptimizer optimized images for OCR readers for improved text recognition. The application supports automatic image rotation, color binarization (black and white), removing shadows from scans, blurr reduction and cropping of areas which are not part of the scanned/photographed paper.
+The OCRImageOptimizer optimizes images for OCR readers for improved text recognition. The application supports automatic image rotation, color binarization (black and white), removing shadows from scans, blurr reduction and cropping of areas which are not part of the scanned/photographed paper.
 
 With Karaka you have one partner who can provide all the tools and software solutions you are used to at fair and reasonable prices even for small organizations and companies/startups. Our solutions can be used independently from each other or fully integrated with other solutions we provide. By choosing Karaka as your partner you'll be able to adjust your software based on the changes in your requirements without worrying about integration and workflow optimization.
 
