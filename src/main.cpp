@@ -9,6 +9,7 @@
  */
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
+#include <opencv2/core/core_c.h>
 #include <vector>
 
 #include "../cOMS/Utils/ArrayUtils.h"
@@ -28,12 +29,13 @@ void printHelp()
     printf("    -h: Prints the help output\n");
     printf("    -i: The input image which should get optimized\n");
     printf("    -o: The output path for the optimized image\n\n");
-    printf("    If no optimization functions are defined (see below), all of them will be applied.\n\n");
+    printf("    If no optimization functions are defined (see below), optimizations marked\n");
+    printf("    with * are automatically applied.\n\n");
     printf("    Optimization functions:\n");
-    printf("    --rotate:  Tries to automatically fix the image rotation\n");
-    printf("    --edges:   Tries to automatically detect and remove irrelevant parts from the image\n");
-    printf("    --binary:  Tries to turn the image purely into black and white and remove shadows\n");
-    printf("    --sharpen: Tries to sharpen (remove blurriness) from the image\n");
+    printf("    --rotate :* Tries to automatically fix the image rotation\n");
+    printf("    --edges  :* Tries to automatically detect and remove irrelevant parts from the image\n");
+    printf("    --binary :* Tries to turn the image purely into black and white and remove shadows\n");
+    printf("    --sharpen:  Tries to sharpen (remove blurriness) from the image (not recommended)\n");
     printf("\n");
     printf("    Website: https://jingga.app\n");
     printf("    Copyright: jingga (c) Dennis Eichhorn\n");
@@ -90,8 +92,18 @@ int main(int argc, char **argv)
         return -1;
     }
 
+    int maxDim = oms_max(in.size().width, in.size().height);
+    if (maxDim > 1500) {
+        cv::resize(in, in, cv::Size(
+            (int) (in.size().width * 1500 / maxDim),
+            (int) (in.size().height * 1500 / maxDim)
+        ), 0.0, 0.0, cv::INTER_AREA);
+    }
+
+    if (DEBUG) cv::imshow("original", in);
+
     cv::Mat out;
-    cv::cvtColor(in, out, CV_BGRA2BGR); // alternatively use CV_BGR2GRAY
+    cv::cvtColor(in, out, cv::COLOR_BGRA2BGR); // alternatively use CV_BGR2GRAY
 
     if (hasEdgesCmd ||
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
@@ -114,14 +126,10 @@ int main(int argc, char **argv)
         if (DEBUG) cv::imshow("rotation", out);
     }
 
-    if (hasSharpenCmd ||
-        (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
-    ) {
+    if (hasSharpenCmd) {
         out = Image::Kernel::convolve(out, Image::KERNEL_SHARPEN);
         if (DEBUG) cv::imshow("sharpen", out);
     }
-
-    if (DEBUG) cv::imshow("original", in);
 
     cv::imwrite(outputImage, out);
 
