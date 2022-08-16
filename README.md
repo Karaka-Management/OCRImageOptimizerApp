@@ -11,7 +11,6 @@ With Karaka you have one partner who can provide all the tools and software solu
   - [Developer tools](#developer-tools)
 - [Installation](#installation)
 - [Philosophy & Demo](#philosophy--demo)
-- [Development status](#development-status)
 - [Tech stack](#tech-stack)
 - [Become a contributor](#become-a-contributor)
 - [Misc](#misc)
