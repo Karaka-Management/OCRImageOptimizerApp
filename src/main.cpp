@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core_c.h>
+#include <opencv2/highgui/highgui.hpp>
 #include <vector>
 
 #include "../cOMS/Utils/ArrayUtils.h"
@@ -19,7 +20,8 @@
 #include "../cOMS/Image/BillDetection.h"
 #include "../cOMS/Image/Kernel.h"
 
-const bool DEBUG = true;
+// define OMS_DEBUG
+// define OMS_DEMO
 
 void printHelp()
 {
@@ -100,7 +102,9 @@ int main(int argc, char **argv)
         ), 0.0, 0.0, cv::INTER_AREA);
     }
 
-    if (DEBUG) cv::imshow("original", in);
+    #ifdef OMS_DEBUG
+        cv::imshow("original", in);
+    #endif
 
     cv::Mat out;
     cv::cvtColor(in, out, cv::COLOR_BGRA2BGR); // alternatively use CV_BGR2GRAY
@@ -109,31 +113,46 @@ int main(int argc, char **argv)
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
     ) {
         out = Image::BillDetection::highlightBill(out);
-        if (DEBUG) cv::imshow("bill_detection", out);
+        #ifdef OMS_DEBUG
+            cv::imshow("bill_detection", out);
+        #endif
     }
 
     if (hasBinaryCmd ||
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
     ) {
         out = Image::Thresholding::integralThresholding(out);
-        if (DEBUG) cv::imshow("thresholding", out);
+        #ifdef OMS_DEBUG
+            cv::imshow("thresholding", out);
+        #endif
     }
 
     if (hasRotateCmd ||
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
     ) {
         out = Image::Skew::deskewHoughLines(out);
-        if (DEBUG) cv::imshow("rotation", out);
+        #ifdef OMS_DEBUG
+            cv::imshow("rotation", out);
+        #endif
     }
 
     if (hasSharpenCmd) {
         out = Image::Kernel::convolve(out, Image::KERNEL_SHARPEN);
-        if (DEBUG) cv::imshow("sharpen", out);
+        #ifdef OMS_DEBUG
+            cv::imshow("sharpen", out);
+        #endif
     }
+
+    #ifdef OMS_DEMO
+        cv::Size dim = out.size();
+        cv::putText(out, "Demo", cv::Point(out.width / 2, out.height / 2), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 0), 2);
+    #endif
 
     cv::imwrite(outputImage, out);
 
-    if (DEBUG) cv::waitKey(0);
+    #ifdef OMS_DEBUG
+        cv::waitKey(0);
+    #endif
 
     return 0;
 }
