@@ -13,6 +13,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <vector>
 
+#include "../cOMS/Utils/MathUtils.h"
 #include "../cOMS/Utils/ArrayUtils.h"
 #include "../cOMS/Utils/FileUtils.h"
 #include "../cOMS/Image/Skew.h"
