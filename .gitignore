@@ -6,3 +6,4 @@ Makefile
 CMakeFiles
 libs
 .vs
+bin/x64/Debug

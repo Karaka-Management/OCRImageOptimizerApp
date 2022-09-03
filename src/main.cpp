@@ -21,8 +21,9 @@
 #include "../cOMS/Image/BillDetection.h"
 #include "../cOMS/Image/Kernel.h"
 
-// define OMS_DEBUG
-// define OMS_DEMO
+#ifndef OMS_DEMO
+    #define OMS_DEMO false
+#endif
 
 void printHelp()
 {
@@ -103,7 +104,7 @@ int main(int argc, char **argv)
         ), 0.0, 0.0, cv::INTER_AREA);
     }
 
-    #ifdef OMS_DEBUG
+    #if OMS_DEBUG
         cv::imshow("original", in);
     #endif
 
@@ -114,7 +115,7 @@ int main(int argc, char **argv)
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
     ) {
         out = Image::BillDetection::highlightBill(out);
-        #ifdef OMS_DEBUG
+        #if OMS_DEBUG
             cv::imshow("bill_detection", out);
         #endif
     }
@@ -123,7 +124,7 @@ int main(int argc, char **argv)
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
     ) {
         out = Image::Thresholding::integralThresholding(out);
-        #ifdef OMS_DEBUG
+        #if OMS_DEBUG
             cv::imshow("thresholding", out);
         #endif
     }
@@ -132,26 +133,26 @@ int main(int argc, char **argv)
         (!hasEdgesCmd && !hasRotateCmd && !hasBinaryCmd && !hasSharpenCmd)
     ) {
         out = Image::Skew::deskewHoughLines(out);
-        #ifdef OMS_DEBUG
+        #if OMS_DEBUG
             cv::imshow("rotation", out);
         #endif
     }
 
     if (hasSharpenCmd) {
         out = Image::Kernel::convolve(out, Image::KERNEL_SHARPEN);
-        #ifdef OMS_DEBUG
+        #if OMS_DEBUG
             cv::imshow("sharpen", out);
         #endif
     }
 
-    #ifdef OMS_DEMO
+    #if OMS_DEMO
         cv::Size dim = out.size();
-        cv::putText(out, "Demo", cv::Point(out.width / 2, out.height / 2), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 0), 2);
+        cv::putText(out, "Demo", cv::Point(out.size().width / 2, out.size().height / 2), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 0), 2);
     #endif
 
     cv::imwrite(outputImage, out);
 
-    #ifdef OMS_DEBUG
+    #if OMS_DEBUG
         cv::waitKey(0);
     #endif
 
