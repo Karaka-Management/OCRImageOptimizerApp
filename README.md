@@ -30,6 +30,23 @@ With Karaka you have one partner who can provide all the tools and software solu
 
 Simply download the .exe and you can run the program
 
+## Usage
+
+The default usage to automatically run all possible optimizations is:
+
+```sh
+OCRImageOptimizerApp.exe -i <INPUT_IMAGE> -o <OUTPUT_IMAGE>
+```
+
+### Arguments
+
+* `-h` Show help
+* `-i` Input image
+* `-o` Output image
+* `--rotate` Tries to automatically fix the image rotation
+* `--edges` Tries to automatically detect and remove irrelevant parts from the image
+* `--binary` Tries to turn the image purely into black and white and remove shadows
+
 ## Philosophy & Demo
 
 We believe software should support a business in it's daily tasks and growth in a very efficient way without frustration. In order to achieve this we constantly take feedback from our customers and expand and improve our software solutions.
