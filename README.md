@@ -43,11 +43,11 @@ The demo application prints a watermark ontop of the optimized image.
 
 ## Become a contributor
 
-Karaka has a very open culture and we always welcome new people who share our philosophy in providing create solutions which just work. You can find the development process description which also describes how to become a contributer in the [Organization documentation](https://github.com/Karaka-Management/Organization-Guide/blob/master/Processes/Development.md).
+Karaka has a very open culture and we always welcome new people who share our philosophy in providing create solutions which just work. You can find the development process description which also describes how to become a contributer in the [Organization documentation](https://github.com/Karaka-Management/Organization-Guide/blob/master/Processes/01_Development.md).
 
 ## Karaka references
 
-* End-User documentation: https://github.com/Karaka-Management/Documentation
+* End-User documentation: https://github.com/Karaka-Management/User-Guide
 * Developer documentation: https://github.com/Karaka-Management/Developer-Guide
 * Organization documentation: https://github.com/Karaka-Management/Organization-Guide
 * Website: [https://karaka.app](https://karaka.app)
