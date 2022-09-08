@@ -24,30 +24,47 @@ With Karaka you have one partner who can provide all the tools and software solu
 
 * Language: C++
 * Libraries: opencv
-* Tools: CMake
+* Tools: CMake or Visual Studio
 
 ## Installation
 
 Simply download the .exe and you can run the program
 
+## Usage
+
+The default usage to automatically run all possible optimizations is:
+
+```sh
+OCRImageOptimizerApp.exe -i <INPUT_IMAGE> -o <OUTPUT_IMAGE>
+```
+
+### Arguments
+
+* `-h` Show help
+* `-i` Input image
+* `-o` Output image
+* `--rotate` Tries to automatically fix the image rotation
+* `--edges` Tries to automatically detect and remove irrelevant parts from the image
+* `--binary` Tries to turn the image purely into black and white and remove shadows
+
 ## Philosophy & Demo
 
 We believe software should support a business in it's daily tasks and growth in a very efficient way without frustration. In order to achieve this we constantly take feedback from our customers and expand and improve our software solutions.
 
+The demo application prints a watermark ontop of the optimized image.
+
 ## Tech stack
 
-* Language: php, js, c++, html, css, markdown, shell script
-* Database: Maria/MySQL, PostgreSQL, MSSQL/SQLSrv, SQLite
-* Webserver: apache2, nginx
-* Cache: Redis, Memcached
+* Language: c++
+* Libraries: opencv
 
 ## Become a contributor
 
-Karaka has a very open culture and we always welcome new people who share our philosophy in providing create solutions which just work. You can find the development process description which also describes how to become a contributer in the [Organization documentation](https://github.com/Karaka-Management/Organization-Guide/blob/master/Processes/Development.md).
+Karaka has a very open culture and we always welcome new people who share our philosophy in providing create solutions which just work. You can find the development process description which also describes how to become a contributer in the [Organization documentation](https://github.com/Karaka-Management/Organization-Guide/blob/master/Processes/01_Development.md).
 
-## Misc
+## Karaka references
 
-* End-User documentation: https://github.com/Karaka-Management/Documentation
+* End-User documentation: https://github.com/Karaka-Management/User-Guide
 * Developer documentation: https://github.com/Karaka-Management/Developer-Guide
 * Organization documentation: https://github.com/Karaka-Management/Organization-Guide
 * Website: [https://karaka.app](https://karaka.app)
