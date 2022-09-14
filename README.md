@@ -15,8 +15,9 @@ With Karaka you have one partner who can provide all the tools and software solu
 - [Become a contributor](#become-a-contributor)
 - [Misc](#misc)
 
-## Requirements
+## Dependencies
 
+* Windows 7 or newer
 * tesseract-ocr (or other) for text recognition
 * pdftoppm (or other) for pdf to image export if your scans are pdf
 
