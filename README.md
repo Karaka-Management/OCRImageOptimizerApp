@@ -4,17 +4,6 @@ The OCRImageOptimizer optimizes images for OCR readers for improved text recogni
 
 With Karaka you have one partner who can provide all the tools and software solutions you are used to at fair and reasonable prices even for small organizations and companies/startups. Our solutions can be used independently from each other or fully integrated with other solutions we provide. By choosing Karaka as your partner you'll be able to adjust your software based on the changes in your requirements without worrying about integration and workflow optimization.
 
-## Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [Requirements](#requirements)
-  - [Developer tools](#developer-tools)
-- [Installation](#installation)
-- [Philosophy & Demo](#philosophy--demo)
-- [Tech stack](#tech-stack)
-- [Become a contributor](#become-a-contributor)
-- [Misc](#misc)
-
 ## Dependencies
 
 * Windows 7 or newer
