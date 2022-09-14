@@ -37,6 +37,10 @@ OCRImageOptimizerApp.exe -i <INPUT_IMAGE> -o <OUTPUT_IMAGE>
 * `--edges` Tries to automatically detect and remove irrelevant parts from the image
 * `--binary` Tries to turn the image purely into black and white and remove shadows
 
+## Images
+
+<p align="center"><img src="https://raw.githubusercontent.com/Karaka-Management/OCRImageOptimizerApp/master/img/OCRImageOptimizer_splash.png" alt="UI"></p>
+
 ## Legal
 
 * [Terms of Service](https://jingga.app/en/terms)
