@@ -31,6 +31,7 @@ void printHelp()
     printf("    order to improve the text recognition performance on non-optimal image sources.\n\n");
     printf("    Run: ./App -i <input_path_to_the_image> -o <output_path_for_new_image>\n\n");
     printf("    -h: Prints the help output\n");
+    printf("    -v: Prints the version\n");
     printf("    -i: The input image which should get optimized\n");
     printf("    -o: The output path for the optimized image\n\n");
     printf("    If no optimization functions are defined (see below), optimizations marked\n");
