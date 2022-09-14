@@ -39,7 +39,7 @@ OCRImageOptimizerApp.exe -i <INPUT_IMAGE> -o <OUTPUT_IMAGE>
 
 ## Images
 
-<p align="center"><img src="https://raw.githubusercontent.com/Karaka-Management/OCRImageOptimizerApp/master/img/OCRImageOptimizer_splash.png" alt="UI"></p>
+<p align="center"><img src="img/OCRImageOptimizer_splash.png" alt="UI"></p>
 
 ## Legal
 
