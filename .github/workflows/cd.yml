@@ -1,4 +1,4 @@
-name:  CD
+name: CD
 
 on: 
   workflow_dispatch:
@@ -22,8 +22,9 @@ jobs:
       with:
         opencv-version: '4.1.0'
     - name: Build cmake
-      run: mkdir build
-      run: cmake -Bbuild -H.
+      run: |
+        mkdir build
+        cmake -Bbuild -H .
     - name: cmake make
       run: cmake --build build/ --config Release
     - name: Create release
