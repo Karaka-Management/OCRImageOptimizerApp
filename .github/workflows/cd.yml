@@ -1,0 +1,41 @@
+name:  CD
+
+on: 
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Release Tag'     
+        required: true
+
+env:
+  APP_NAME: OCRImageOptimizerApp
+
+jobs:
+  build: 
+    runs-on: ubuntu-18.04
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup openCV
+    - uses: Dovyski/setup-opencv-action@v1
+      with:
+        opencv-version: '4.1.0'
+    - name: Build cmake
+      run: mkdir build
+      run: cmake -Bbuild -H.
+    - name: cmake make
+      run: cmake --build build/ --config Release
+    - name: Create release
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "bin/Release/net6.0-windows/win-x64/publish/*.exe,bin/Demo/net6.0-windows/win-x64/publish/*.exe"
+        tag: ${{ github.event.inputs.tags }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifactErrorsFailBuild: true
+    - uses: dev-drprasad/delete-older-releases@v0.2.0
+      with:
+        keep_latest: 3
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
