@@ -21,12 +21,12 @@ jobs:
       uses: Dovyski/setup-opencv-action@v1
       with:
         opencv-version: '4.1.0'
-    - name: Build cmake
+    - name: Cmake
       run: |
         mkdir build
-        cmake -Bbuild -H .
-    - name: cmake make
-      run: cmake --build build/ --config Release
+        cd build
+        cmake ../
+        cmake --build --config Release .
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
