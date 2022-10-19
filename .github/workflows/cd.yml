@@ -11,8 +11,8 @@ env:
   APP_NAME: OCRImageOptimizerApp
 
 jobs:
-  build: 
-    runs-on: ubuntu-18.04
+  build-linux: 
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -33,6 +33,7 @@ jobs:
         cmake ../
         cmake --build .
     - name: Create release
+      id: create_release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "build/OCRImageOptimizerApp"
@@ -45,3 +46,36 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build-windows: 
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@main
+      with:
+        fetch-depth: 1
+        submodules: recursive
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup openCV
+      uses: Dovyski/setup-opencv-action@v1
+      with:
+        opencv-version: '4.1.0'
+    - name: Build
+      run: |
+        msbuild src/${{env.APP_NAME}}.vcxproj /t:rebuild
+        msbuild src/${{env.APP_NAME}}.vcxproj /t:build /p:Configuration=Release /p:Platform=x64
+        msbuild src/${{env.APP_NAME}}.vcxproj /t:build /p:Configuration=Demo /p:Platform=x64
+        dir
+        dir bin
+        dir build
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./my-artifact.zip
+        asset_name: my-artifact.zip
+        asset_content_type: application/octet-stream
+
