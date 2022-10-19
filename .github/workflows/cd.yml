@@ -16,7 +16,12 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@main
+      with:
+        fetch-depth: 1
+        submodules: recursive
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup openCV
       uses: Dovyski/setup-opencv-action@v1
       with:
