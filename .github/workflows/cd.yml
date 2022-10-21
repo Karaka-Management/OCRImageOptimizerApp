@@ -32,11 +32,13 @@ jobs:
         cd build
         cmake ../
         cmake --build .
+        cd ..
+        mv bin/x64/Demo/OCRImageOptimizerApp.exe bin/x64/Demo/Demo_OCRImageOptimizerApp.exe
     - name: Create release
       id: create_release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "build/OCRImageOptimizerApp"
+        artifacts: "build/OCRImageOptimizerApp,bin/x64/Demo/Demo_OCRImageOptimizerApp.exe,bin/x64/Release/OCRImageOptimizerApp.exe"
         tag: ${{ github.event.inputs.tags }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifactErrorsFailBuild: true
